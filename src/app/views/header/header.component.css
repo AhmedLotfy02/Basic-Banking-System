@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Luckiest+Guy&family=Roboto+Condensed:wght@300&display=swap');
+.header{
+    background: linear-gradient(90deg, rgba(191,64,191,1) 35%, rgba(149,0,255,1) 100%);
+
+    display:flex;
+    justify-content: space-between;
+
+}
+.header .header__left{
+    font-size: 40px;
+    padding: 30px;
+    color:white;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-shadow: 4px 4px  rgb(191,64,191);
+
+}
+.header .header__right{
+    display:flex;
+    justify-content:space-evenly;
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
+.header__right__button:hover{
+    background-color:white;
+    transition: 0.5s ease-in-out ;
+ 
+}
+.header__right__button button{
+    background: transparent;
+    position: relative;
+    top: 30%;
+    color:white;
+}
+.header__right__button button:hover{
+    transition: 0.5s ease-in-out ;
+    background: transparent;
+    position: relative;
+    top: 30%;
+    color: rgb(191,64,191);
+}
