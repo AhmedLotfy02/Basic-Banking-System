@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<table class="table table-dark">
+    <thead >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Current Balance</th>
+        <th scope="col">Email</th>
+        <th scope="col">History</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let customer of customers">
+            <th scope="row"></th>
+            <td>{{customer.name}}</td>
+            <td>{{customer.currentBalance}}</td>
+            <td>{{customer.email}}</td>
+            <td (click)="goto(customer)">View</td>
+        </tr>
+     
+    
+  
+    </tbody>
+  </table> 

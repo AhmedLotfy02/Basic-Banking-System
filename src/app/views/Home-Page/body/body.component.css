@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Fredoka+One&family=Luckiest+Guy&family=Roboto+Condensed:wght@300&family=Satisfy&display=swap');
+
+section{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.section__right{
+   
+    max-width: 900px;
+   
+    max-height: 200px;
+}
+
+section img{
+    width: 100%;
+    height: auto;
+}
+section h1{
+padding-top: 100px;
+font-size: 3vw;
+
+background: -webkit-linear-gradient(#eee, #333);
+-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+font-family: 'Fredoka One', cursive;
+
+}
+section h3{
+    font-family: 'Satisfy', cursive;
+    font-size: 1.5vw;
+}
+.section__left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.section__left button{
+    background: linear-gradient(90deg, rgba(191,64,191,1) 35%, rgba(149,0,255,1) 100%);
+    color: white;
+    margin-top: 60px;
+    width: 100%;
+    min-width: 20px; 
+    max-width: 60px; 
+}
+.section__left button:hover{
+    background: white;
+    transition: 1s;
+    transform: scale(1.2);
+    box-shadow:  linear-gradient(90deg, rgba(191,64,191,1) 35%, rgba(149,0,255,1) 100%);
+    color: rgb(191,64,191);
+}
