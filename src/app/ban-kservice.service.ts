@@ -10,7 +10,7 @@ export class BanKServiceService {
   
   private operationListener = new Subject<{logicError:boolean,errorSending:boolean,doneSending:boolean}>();
   private customersListener=new Subject<customer[]>();
-  customers!:any;
+  customers!:customer[];
   customer!:customer;
   servedCustomer!:customer;
 
@@ -24,7 +24,7 @@ export class BanKServiceService {
    getCustomers(){
      this.http.get('http://localhost:3000/addMock').subscribe(bos=>
      {
-       this.customers=bos;
+      //  this.customers=bos;
      })
    }
    getCustsObser(){
@@ -34,10 +34,11 @@ export class BanKServiceService {
      return this.customers;
    }
    retriveCustomer(cust:customer){
+  
     this.customer=cust;
    }
    getCustomer(){
-     return this.customer;
+   return this.customer;
    }
    setServedCustomer(cust:customer){
      this.servedCustomer=cust;

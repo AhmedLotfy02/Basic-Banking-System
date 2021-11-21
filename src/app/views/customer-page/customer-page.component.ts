@@ -13,12 +13,11 @@ export class CustomerPageComponent implements OnInit {
   constructor(private BankSerivce:BanKServiceService,private router:Router) {
     setTimeout(() => {
       this.customer=this.BankSerivce.getCustomer();
-
+      console.log(this.customer);
     }, 100);
    }
 
   ngOnInit(): void {
-  
   }
   transfer(){
     this.router.navigate(['/transfer']);

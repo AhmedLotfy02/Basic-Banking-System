@@ -11,11 +11,14 @@ import { customer } from 'src/app/models/customer-model';
 export class TransferPageComponent implements OnInit {
   customers!:any;
   recentcustomer!:customer;
-  spinnerLoading=true;
   constructor(private BankService:BanKServiceService) {
     
     
-  
+    setTimeout(() => {
+      this.recentcustomer=this.BankService.getCustomer();
+      this.customers=this.BankService.getCusts();
+      console.log(this.customers)
+    }, 500);
    }
    currentPage=false;
    wrongInput=false ;
@@ -25,12 +28,6 @@ export class TransferPageComponent implements OnInit {
    donesending=false;
    transferListener!: Subscription;
   ngOnInit(): void {
-    this.BankService.getCustsObser().subscribe((cus)=>{
-      this.customers=cus;
-      console.log(this.customers);
-      this.recentcustomer=this.BankService.getCustomer();
-      this.spinnerLoading=false;
-    })
     this.transferListener=this.BankService.getOperationListener().subscribe((response)=>{
         this.errorSend=response.errorSending;
         this.donesending=response.doneSending;
