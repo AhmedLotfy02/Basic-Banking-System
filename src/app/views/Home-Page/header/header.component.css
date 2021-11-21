@@ -8,6 +8,7 @@
 }
 .header .header__left{
     font-size: 40px;
+    cursor: pointer;
     padding: 30px;
     color:white;
     font-family: 'Roboto Condensed', sans-serif;

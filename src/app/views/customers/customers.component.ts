@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BanKServiceService } from 'src/app/ban-kservice.service';
 import { customer } from 'src/app/models/customer-model';
 
@@ -9,7 +10,7 @@ import { customer } from 'src/app/models/customer-model';
 })
 export class CustomersComponent implements OnInit {
   customers!:any;
-  constructor(private BankService:BanKServiceService) { 
+  constructor(private BankService:BanKServiceService,private router:Router) { 
     
   }
 
@@ -19,7 +20,8 @@ export class CustomersComponent implements OnInit {
     console.log(this.customers);
     }, 500);
   }
-  goto(customer:any){
-    console.log(customer);
+  async goto(customer:any) {
+   await this.BankService.retriveCustomer(customer);
+   await this.router.navigate(['/customer']);
   }
 }

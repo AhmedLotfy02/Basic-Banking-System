@@ -20,6 +20,7 @@ const db = mongoose.connection;
 
 const uniqueValidator = require("mongoose-unique-validator");
 const multer = require("multer");
+const { format } = require("path/posix");
 const MIME_TYPE_MAP = {
     "image/png": "png",
     "image/jpeg": "jpg",
@@ -335,4 +336,74 @@ app.get('/api/getCustomers',(req,res,next)=>{
 
 app.post('/api/addCustomer',(req,res,next)=>{
     res.send(200);
+})
+app.post('/transfer',(req,res,next)=>{
+    const history=req.body.from.history;
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+const dateObj = new Date();
+const month = dateObj.getMonth() +1;
+const day = String(dateObj.getDate()).padStart(2, '0');
+const year = dateObj.getFullYear();
+const output =  day.toString() + '/'+  month.toString()  + '/' + year.toString();
+
+    const newhistory={
+        to:req.body.to.name,
+        from: ' ',
+        send:true,
+        value:req.body.value,
+        date:output
+    }
+   history.push(newhistory);
+    const servingCustomer={
+        name:req.body.from.name,
+        email:req.body.from.email,
+        currentBalance:req.body.from.currentBalance-req.body.value,
+        history:history
+    }
+    Customer.findOneAndUpdate({ name: servingCustomer.name }, { $set: { currentBalance: servingCustomer.currentBalance,history:servingCustomer.history } }, { new: true },
+        (err, doc) => {
+            if (err) {
+                console.log("error happened");
+                res.status(500).json({
+                    message:'errorSending',
+                    ErrorSending:true
+                })
+            } else {
+                console.log("ServingCustomerUpdated");
+            }
+        }
+    );
+    const newhistory2={
+        to:' ',
+        from: req.body.to.name,
+        send:false,
+        value:req.body.value,
+        date:output
+    }
+    const history2=req.body.to.history;
+    history2.push(newhistory2);
+    const servedCustomer={
+        name:req.body.to.name,
+        email:req.body.to.email,
+        currentBalance:req.body.to.currentBalance+req.body.value,
+        history:history2
+    }
+    Customer.findOneAndUpdate({ name: servedCustomer.name }, { $set: { currentBalance: servedCustomer.currentBalance,history:servedCustomer.history } }, { new: true },
+        (err, doc) => {
+            if (err) {
+                console.log("error happened");
+                res.status(500).json({
+                    message:'errorSending',
+                    ErrorSending:true
+                });
+            } else {
+                console.log("ServedCustomerUpdated");
+            }
+        }
+    );
+    res.status(200).json({
+        message:'Done',
+        DoneSending:true
+    });
 })

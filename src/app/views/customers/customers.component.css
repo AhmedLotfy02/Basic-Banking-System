@@ -1,0 +1,8 @@
+.view{
+    cursor: pointer;
+    color: purple;
+
+}
+.view:hover{
+  transform: scale(1.2);
+}

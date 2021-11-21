@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<table class="table table-dark">
+<table class="table table-dark ">
     <thead >
       <tr>
         <th scope="col">#</th>
@@ -15,9 +15,9 @@
         <tr *ngFor="let customer of customers">
             <th scope="row"></th>
             <td>{{customer.name}}</td>
-            <td>{{customer.currentBalance}}</td>
+            <td>{{customer.currentBalance}} USD</td>
             <td>{{customer.email}}</td>
-            <td (click)="goto(customer)">View</td>
+            <td class="view" (click)="goto(customer)">View</td>
         </tr>
      
     

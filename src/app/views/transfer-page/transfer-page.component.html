@@ -1,0 +1,58 @@
+<app-header></app-header>
+
+<mat-spinner *ngIf="spinnerLoading"></mat-spinner>
+
+<div *ngIf="!spinnerLoading">
+<div *ngIf="!currentPage">
+<table class="table table-dark ">
+    <thead >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Current Balance</th>
+        <th scope="col">Email</th>
+        <th scope="col">History</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let customer of customers">
+         
+                <th *ngIf="customer.name!==recentcustomer.name" scope="row"></th>
+                <td *ngIf="customer.name!==recentcustomer.name">{{customer.name}}</td>
+                <td *ngIf="customer.name!==recentcustomer.name">{{customer.currentBalance}} USD</td>
+                <td *ngIf="customer.name!==recentcustomer.name">{{customer.email}}</td>
+                <td *ngIf="customer.name!==recentcustomer.name" class="view" (click)="select(customer)">Select</td>
+        
+           
+        </tr>
+     
+    
+  
+    </tbody>
+  </table> 
+</div>
+<div *ngIf="currentPage">
+    <div class="cash">
+        <div class="col-lg-6">
+            <img class="imgleft animate__animated  animate__fadeInLeft" src="https://blakeandannabelle.files.wordpress.com/2015/01/glowing-purple-neon-icon-alphanumeric-dollar-sign.png" alt="">
+
+        </div>
+        <div class="col-lg-3">
+            <p class="cash__right">Enter the value:</p>
+            <div class="input-group input-group-sm mb-3">
+                
+                <input type="number" class="form-control" aria-label="Small" ngModel [(ngModel)]="value" aria-describedby="inputGroup-sizing-sm">
+              </div>
+              <button mat-raised-button class="transfer" (click)="transfer()" >Done</button>
+
+              <div class="op" *ngIf="wrongInput">Please enter a number</div>
+              <div *ngIf="donesending" class="done">Transcation is Done</div>
+              <div *ngIf="logicError" class="done">Enter a value less than or equal your current balance</div>
+              <div *ngIf="errorSend" class="done">Error occured while transcating</div>
+
+        </div>
+    </div>
+
+</div>
+</div>

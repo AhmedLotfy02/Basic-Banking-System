@@ -1,8 +1,10 @@
 
 export interface history{
     to:string,
+    from:string,
     value:number,
-    date:string
+    date:string,
+    send:boolean
 }
 
 export interface customer{
